@@ -1,0 +1,22 @@
+<script>
+window.onload = function() {
+    sortByFirstName();
+};
+
+function sortByFirstName() {
+    const tbl = document.getElementById('tbl');
+    const rows = Array.from(tbl.rows).slice(1);
+    
+    rows.sort((a, b) => {
+        const aFirstName = a.cells[0].innerHTML.trim().split(' ')[0];
+        const bFirstName = b.cells[0].innerHTML.trim().split(' ')[0];
+        return aFirstName.localeCompare(bFirstName);
+    });
+    
+    while (tbl.rows.length > 1) {
+        tbl.deleteRow(1);
+    }
+    
+    rows.forEach(row => tbl.appendChild(row));
+}
+</script>
